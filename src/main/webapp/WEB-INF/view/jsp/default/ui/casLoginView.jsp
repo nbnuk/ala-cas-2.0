@@ -15,7 +15,7 @@ TODO: add ALA licensing info.
 
     <!-- Main col -->
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	<h1 class="hidden">Welcome the Atlas of Living Australia</h1>
+	<h1 class="hidden">Welcome the Atlas of Living Scotland</h1>
 	<ol class="breadcrumb">
 	    <li><a class="font-xxsmall" href="#">Home</a></li>
 	    <!-- <li><a class="font-xxsmall" href="#">About</a></li> -->
@@ -34,9 +34,9 @@ TODO: add ALA licensing info.
 
 		    <div class="logo-brand">
 			<div class="brand-layout-control">
-			    <img alt="Brand" class="img-responsive" src="img/supporting-graphic-element-flat-medium.png" />
+			    <!-- <img alt="Brand" class="img-responsive" src="img/supporting-graphic-element-flat-medium.png" /> -->
 			</div>
-			<h2 class="heading-medium-large">Sign in to the ALA</h2>
+			<h2 class="heading-medium-large">Sign in to the Atlas of Living Scotland</h2>
 		    </div>
 
 		    <a href="${FacebookClientUrl}" class="btn btn-lg btn-facebook btn-block margin-bottom-1 font-xxsmall">Sign in with Facebook</a>
