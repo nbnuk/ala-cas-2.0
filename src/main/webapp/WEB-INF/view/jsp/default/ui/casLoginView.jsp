@@ -36,7 +36,7 @@ TODO: add ALA licensing info.
 			<div class="brand-layout-control">
 			    <!-- <img alt="Brand" class="img-responsive" src="img/supporting-graphic-element-flat-medium.png" /> -->
 			</div>
-			<h2 class="heading-medium-large">Sign in to the Atlas of Living Scotland</h2>
+			<h2 class="heading-medium-large">Sign in to the Atlas</h2>
 		    </div>
 
 		    <a href="${FacebookClientUrl}" class="btn btn-lg btn-facebook btn-block margin-bottom-1 font-xxsmall">Sign in with Facebook</a>

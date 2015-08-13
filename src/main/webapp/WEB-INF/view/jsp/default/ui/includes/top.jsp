@@ -53,6 +53,13 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+    <style type="text/css">
+        .btn-facebook{background-color: #507CBE;color: white;} .btn-facebook:hover{background-color:#4B73AE;color: white;}
+        .btn-twitter{display:none; background-color: #55acee;color: white;} .btn-twitter:hover{background-color:#5CBBDC;color: white;}
+        .btn-google{background-color: #dd4b39;color: white;} .btn-google:hover{background-color:#CE4636;color: white;}
+    </style>
+
     </head>
     <body id="cas">
 	<!-- TODO: add ala:bannerMenu, etc. -->
