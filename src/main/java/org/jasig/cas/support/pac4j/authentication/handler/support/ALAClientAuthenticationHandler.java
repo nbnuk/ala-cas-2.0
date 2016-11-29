@@ -20,6 +20,8 @@ package org.jasig.cas.support.pac4j.authentication.handler.support;
 
 import java.security.GeneralSecurityException;
 import javax.security.auth.login.FailedLoginException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.StringUtils;
@@ -33,7 +35,11 @@ import org.jasig.cas.authentication.principal.PrincipalResolver;
 import org.jasig.cas.support.pac4j.authentication.principal.ClientCredential;
 import org.pac4j.core.client.Client;
 import org.pac4j.core.client.Clients;
+import org.pac4j.core.context.J2EContext;
+import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.UserProfile;
+import org.springframework.webflow.context.ExternalContextHolder;
+import org.springframework.webflow.context.servlet.ServletExternalContext;
 import au.org.ala.cas.UserCreator;
 import java.util.Map;
 import java.util.HashMap;
@@ -99,8 +105,14 @@ public final class ALAClientAuthenticationHandler extends AbstractAuthentication
         final Client<org.pac4j.core.credentials.Credentials, UserProfile> client = this.clients.findClient(clientName);
         logger.debug("client : {}", client);
 
+	// web context
+	final ServletExternalContext servletExternalContext = (ServletExternalContext) ExternalContextHolder.getExternalContext();
+	final HttpServletRequest request = (HttpServletRequest) servletExternalContext.getNativeRequest();
+	final HttpServletResponse response = (HttpServletResponse) servletExternalContext.getNativeResponse();
+	final WebContext webContext = new J2EContext(request, response);
+
         // get user profile
-        final UserProfile userProfile = client.getUserProfile(clientCredentials.getCredentials());
+        final UserProfile userProfile = client.getUserProfile(clientCredentials.getCredentials(), webContext);
         logger.debug("userProfile : {}", userProfile);
 
         if (userProfile != null && StringUtils.isNotBlank(userProfile.getTypedId())) {
@@ -114,24 +126,28 @@ public final class ALAClientAuthenticationHandler extends AbstractAuthentication
 		throw new FailedLoginException("No email address found; email address is required to lookup (and/or create) ALA user!");
 	    }
 
+	    //NOTE: just in case social media gave us email containing Upper case letters
+	    final String emailAddress = email.toLowerCase();
 	    final Credential alaCredential = new Credential() {
 		    public String getId() {
-			return email;
+			return emailAddress;
 		    }
 		};
 
 	    // get the ALA user attributes from the userdetails DB ("userid", "firstname", "lastname", "authority")
 	    Principal principal = this.principalResolver.resolve(alaCredential);
+	    logger.debug("{} resolved principal: {}", this.principalResolver, principal);
 
 	    // does the ALA user exist?
-	    if (!principal.getAttributes().containsKey("userid")) { //TODO: make this nice and configurable
+	    if (!ALAClientAuthenticationHandler.validatePrincipalALA(principal)) {
 		// create a new ALA user in the userdetails DB
-		logger.debug("user {} not found in ALA userdetails DB, creating new ALA user for: {}.", email, email);
+		logger.debug("user {} not found in ALA userdetails DB, creating new ALA user for: {}.", emailAddress, emailAddress);
 		this.userCreator.createUser(userProfile); //TODO: we can check this for failed user creation, to be accurate
 
 		// re-try (we have to retry, because that is how we get the required "userid")
 		principal = this.principalResolver.resolve(alaCredential);
-		if (!principal.getAttributes().containsKey("userid")) {
+		logger.debug("{} resolved principal: {}", this.principalResolver, principal);
+		if (!ALAClientAuthenticationHandler.validatePrincipalALA(principal)) {
 		    // we failed to lookup ALA user (most likely because the creation above failed), complain, throw exception, etc.
 		    throw new FailedLoginException("Unable to create ALA user for " + clientCredentials);
 		}
@@ -143,5 +159,11 @@ public final class ALAClientAuthenticationHandler extends AbstractAuthentication
         }
 
         throw new FailedLoginException("Provider did not produce profile for " + clientCredentials);
+    }
+
+    static boolean validatePrincipalALA(final Principal principal) {
+	return (principal != null)
+	    && (principal.getAttributes() != null)
+	    && principal.getAttributes().containsKey("userid");
     }
 }
