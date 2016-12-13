@@ -20,7 +20,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="app.version" content="<fmt:message key="ala.cas.build.version" bundle="${ala_cas_build}"/>" />
 
-	<title>Login | Atlas of Living Scotland</title>
+	<title>Login | NBN Atlas</title>
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="http://www.als.scot">
+        <a class="navbar-brand" href="http://www.nbnatlas.org">
           <!-- <img alt="Brand" class="img-responsive" src="img/supporting-graphic-element-flat.png"> -->
           </a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -81,7 +81,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand font-xsmall" href="http://www.als.scot">The Atlas Of Living Scotland</a>
+        <a class="navbar-brand font-xsmall" href="https://www.nbnatlas.org">NBN Atlas</a>
       </div>
     </div><!-- /.container-fluid -->
   </nav><!-- End Navbar -->
