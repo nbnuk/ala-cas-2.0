@@ -2,13 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
 
-	<parent>
-		<groupId>au.org.ala</groupId>
-		<artifactId>ala-parent-pom</artifactId>
-		<version>1.2-SNAPSHOT</version>
-		<relativePath>../ala-parent-pom/pom.xml</relativePath>
-	</parent>
-
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>au.org.ala</groupId>
 	<artifactId>ala-cas</artifactId>
@@ -57,6 +50,18 @@
 			</resource>
 		</resources>
 	</build>
+    <distributionManagement>
+	<repository>
+	    <id>uk-nbn-releases</id>
+	    <name>NBN Releases</name>                 
+	    <url>http://repository.gbif.org/content/repositories/uk-nbn-releases/</url>
+	</repository>
+	<snapshotRepository>
+	    <id>uk-nbn-snapshots</id>
+	    <name>NBN Snapshots</name>
+	    <url>http://repository.gbif.org/content/repositories/uk-nbn-snapshots/</url>
+	</snapshotRepository>
+    </distributionManagement>	
 
 	<dependencies>
 		<dependency>
