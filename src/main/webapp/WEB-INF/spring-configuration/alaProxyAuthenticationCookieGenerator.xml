@@ -11,6 +11,6 @@
 		p:cookieSecure="false"
 		p:cookieMaxAge="-1"
 		p:cookieName="ALA-Auth"
-		p:cookieDomain=".als.scot"
+		p:cookieDomain=".nbnatlas.org"
 		p:cookiePath="/" />
 </beans>
