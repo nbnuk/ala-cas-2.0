@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
+	<parent>
+		<groupId>au.org.ala</groupId>
+		<artifactId>ala-parent-pom</artifactId>
+		<version>1.2-SNAPSHOT</version>
+		<!--<relativePath>../ala-parent-pom/pom.xml</relativePath>-->
+	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.org.nbn.atlas</groupId>
@@ -18,7 +24,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<warName>cas</warName>
+					<!--<warName>cas</warName>-->
 					<overlays>
 						<overlay>
 							<groupId>org.jasig.cas</groupId>
@@ -184,7 +190,7 @@
 
 	<properties>
 		<cas.version>4.0.4</cas.version>
-		<pac4j.version>1.7.1</pac4j.version>
+		<pac4j.version>1.7.2</pac4j.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
